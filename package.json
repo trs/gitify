@@ -49,7 +49,6 @@
   "dependencies": {
     "auto-launch": "=4.0.0",
     "bootstrap": "=4.0.0-alpha.3",
-    "electron-gh-releases": "=2.0.4",
     "electron-positioner": "=3.0.0",
     "font-awesome": "=4.6.3",
     "history": "=2.1.1",

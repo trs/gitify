@@ -23,10 +23,6 @@ export class SettingsPage extends React.Component {
     ipcRenderer.send('update-icon', 'IconPlain');
   }
 
-  checkForUpdates() {
-    ipcRenderer.send('check-update');
-  }
-
   appQuit() {
     ipcRenderer.send('app-quit');
   }
@@ -38,11 +34,6 @@ export class SettingsPage extends React.Component {
     return (
       <div className="container-fluid main-container settings">
         <ul className="nav nav-pills">
-          <li className="nav-item">
-            <a className="nav-link" onClick={this.checkForUpdates}>
-              <i className="fa fa-cloud-download" /> Update
-            </a>
-          </li>
           <li className="nav-item">
             <a className="nav-link" onClick={this.logout.bind(this)}>
               <i className="fa fa-sign-out" /> Logout
