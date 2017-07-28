@@ -91,31 +91,6 @@ describe('components/settings.js', function () {
 
   });
 
-  it('should check for updates ', function () {
-
-    const props = {
-      updateSetting: sinon.spy(),
-      fetchNotifications: sinon.spy(),
-      logout: sinon.spy(),
-      settings: {
-        participating: false,
-        playSound: true,
-        showNotifications: true,
-        markOnClick: false,
-        openAtStartup: false
-      }
-    };
-
-    const { wrapper } = setup(props);
-
-    expect(wrapper).to.exist;
-
-    wrapper.find('.fa-cloud-download').parent().simulate('click');
-    expect(ipcRenderer.send).to.have.been.calledOnce;
-    expect(ipcRenderer.send).to.have.been.calledWith('check-update');
-
-  });
-
   it('should quit the app', function () {
 
     const props = {

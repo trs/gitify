@@ -8,7 +8,6 @@ const app = electron.app;
 const dialog = electron.dialog;
 const ipc = electron.ipcMain;
 
-const GhReleases = require('electron-gh-releases');
 var Positioner = require('electron-positioner');
 
 var AutoLaunch = require('auto-launch');
@@ -46,45 +45,6 @@ app.on('ready', function() {
         updater.install();
       }
     } );
-  }
-
-  function checkAutoUpdate(showAlert) {
-
-    let autoUpdateOptions = {
-      repo: 'ekonstantinidis/gitify',
-      currentVersion: app.getVersion()
-    };
-
-    const updater = new GhReleases(autoUpdateOptions);
-
-    updater.on('error', (event, message) => {
-      console.log('ERRORED.');
-      console.log('Event: ' + JSON.stringify(event) + '. MESSAGE: ' + message);
-    });
-
-    updater.on('update-downloaded', (info) => {
-      // Restart the app(ask) and install the update
-      confirmAutoUpdate(updater);
-    });
-
-    // Check for updates
-    updater.check((err, status) => {
-      if (err || !status) {
-        if (showAlert) {
-          dialog.showMessageBox({
-            type: 'info',
-            buttons: ['Close'],
-            title: 'No update available',
-            message: 'You are currently running the latest version of Gitify.'
-          });
-        }
-        app.dock.hide();
-      }
-
-      if (!err && status) {
-        updater.download();
-      }
-    });
   }
 
   function initMenu () {
@@ -156,7 +116,6 @@ app.on('ready', function() {
     });
 
     initMenu();
-    checkAutoUpdate(false);
   }
 
   function showWindow (trayPos) {
@@ -219,10 +178,6 @@ app.on('ready', function() {
 
   ipc.on('startup-disable', function() {
     autoStart.disable();
-  });
-
-  ipc.on('check-update', function() {
-    checkAutoUpdate(true);
   });
 
   ipc.on('app-quit', function() {
