@@ -4,7 +4,7 @@ let constants = {
   CLIENT_SECRET: '9670de733096c15322183ff17ed0fc8704050379',
   SCOPE: ['user:email', 'notifications'],
 
-  REPO_SLUG: 'manosim/gitify',
+  REPO_SLUG: 'trs/gitify',
 
   // Storage
   STORAGE_KEY: 'gitify-storage',
