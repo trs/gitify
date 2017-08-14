@@ -21,10 +21,6 @@ export class NotificationsPage extends React.Component {
     return _.all(searchTerms, this.areIn.bind(null, obj.repository.full_name));
   }
 
-  openBrowser() {
-    shell.openExternal('http://www.github.com/manosim/gitify');
-  }
-
   render() {
     const wrapperClass = 'container-fluid main-container notifications';
     const notificationsEmpty = _.isEmpty(this.props.notifications);
@@ -61,12 +57,6 @@ export class NotificationsPage extends React.Component {
             return <Repository repo={obj} repoName={repoFullName} key={key} />;
           })}
         </ReactCSSTransitionGroup>
-
-        {!_.isEmpty(groupedNotifications) && !this.props.hasStarred ? (
-          <div className="fork" onClick={this.openBrowser}>
-            <i className="fa fa-github" /> Star Gitify on GitHub
-          </div>
-        ) : null}
       </div>
     );
   }
