@@ -56,7 +56,6 @@ describe('components/notifications.js', function () {
 
     expect(wrapper).to.exist;
     expect(wrapper.find(ReactCSSTransitionGroup).children().length).to.equal(2);
-    expect(wrapper.find('.fork').text()).to.contain('Star Gitify on GitHub');
     expect(wrapper.find('.errored').length).to.equal(0);
     expect(wrapper.find('.all-read').length).to.equal(0);
 
